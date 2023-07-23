@@ -1,7 +1,8 @@
 using System;
+using Infrastracture;
 using UnityEngine;
 
-namespace Infrastracture
+namespace Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour
     {
