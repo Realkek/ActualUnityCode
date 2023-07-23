@@ -1,6 +1,5 @@
-using System;
+using ForCamera;
 using Infrastracture;
-using Infrastructure;
 using Services.Input;
 using UnityEngine;
 
@@ -21,7 +20,8 @@ namespace Character
 
         private void Start()
         {
-            _camera = Camera.main; 
+            _camera = Camera.main;
+            if (_camera != null) _camera.GetComponent<CameraFollow>().Follow(gameObject);
         }
 
         private void Update()
@@ -35,8 +35,7 @@ namespace Character
 
                 transform.forward = movementVector; 
             }
-
-            movementVector += Physics.gravity; 
+            movementVector += Physics.gravity;
             CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
         }
         
