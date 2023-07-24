@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7295150198418489791}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: JoyStickArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5980719793547552532}
   - component: {fileID: 4976455634754654635}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SimpleInputDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 224977699150327530, guid: e0815e227ed46e445b99930271e8942c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.701449
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224977699150327530, guid: e0815e227ed46e445b99930271e8942c,
         type: 3}
