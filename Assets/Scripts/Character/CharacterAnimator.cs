@@ -1,5 +1,5 @@
 using System;
-using Infrastracture;
+using Infrastructure;
 using Services.Input;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace Character
         private static readonly int RunningHash = Animator.StringToHash("Running");
         private static readonly int IdleHash = Animator.StringToHash("Idle");
         private readonly int _walkingStateHash = Animator.StringToHash("Run");
-        private InputService _inputService;
+        private IInputService _inputService;
         public Animator Animator;
         public CharacterController CharacterController;
 

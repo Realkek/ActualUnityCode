@@ -1,5 +1,5 @@
 using ForCamera;
-using Infrastracture;
+using Infrastructure;
 using Services.Input;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace Character
         public CharacterController CharacterController;
         public float MovementSpeed;
 
-        private InputService _inputService;
+        private IInputService _inputService;
         private Camera _camera;
 
         private void Awake()
@@ -36,7 +36,7 @@ namespace Character
                 transform.forward = movementVector; 
             }
             movementVector += Physics.gravity;
-            CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
+            CharacterController.Move(movementVector * (MovementSpeed * Time.deltaTime));
         }
         
     }
