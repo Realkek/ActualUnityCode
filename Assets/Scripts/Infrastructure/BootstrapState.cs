@@ -7,6 +7,7 @@ namespace Infrastructure
     public class BootstrapState : IState
     {
         private const string Initial = "Initial";
+        private const string Gameplay = "Gameplay";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader; 
 
@@ -19,12 +20,12 @@ namespace Infrastructure
         public void Enter()
         {
             SetUpServices();
-            _sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
+            _sceneLoader.Load(name: Initial, onLoaded: EnterLoadLevel);
         }
 
         private void EnterLoadLevel()
         {
-            _gameStateMachine.Enter<LoadLevelState>();
+            _gameStateMachine.Enter<LoadLevelState, string>(Gameplay);
         }
 
         private void SetUpServices()

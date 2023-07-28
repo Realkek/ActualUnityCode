@@ -17,13 +17,7 @@ namespace Character
         {
             _inputService = Game.InputService; 
         }
-
-        private void Start()
-        {
-            _camera = Camera.main;
-            if (_camera != null) _camera.GetComponent<CameraFollow>().Follow(gameObject);
-        }
-
+        
         private void Update()
         {
             Vector3 movementVector = Vector3.zero;
