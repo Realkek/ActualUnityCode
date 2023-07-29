@@ -6,12 +6,13 @@ namespace Infrastructure
 {
     public class LoadLevelState : IPayloadState<string>
     {
-        private const string AnimeGirlPath = "Characters/AnimeGirl";
+       
         private const string Initialpoint = "InitialPoint";
-        private const string Simpleinputdisplay = "SimpleInputDisplay";
+       
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
+        private readonly IGameFactory _gameFactory;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
         {
@@ -29,22 +30,11 @@ namespace Infrastructure
         private void PrepareLevel()
         {
             var initialPoint = GameObject.FindWithTag(Initialpoint);
-            var playerCharacter = Instantiate(path: AnimeGirlPath, at: initialPoint.transform.position);
-            Instantiate(Simpleinputdisplay);
+            var playerCharacter = _gameFactory.CreatePlayerCharacter(at: initialPoint);
+            _gameFactory.CreateDisplay();
 
             CameraFollow(playerCharacter);
             _stateMachine.Enter<GameLoopState>();
-        }
-
-        private static GameObject Instantiate(string path)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab);
-        }
-        private static GameObject Instantiate(string path, Vector3 at)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab, at, Quaternion.identity);
         }
 
         private static void CameraFollow(GameObject playerCharacter)
