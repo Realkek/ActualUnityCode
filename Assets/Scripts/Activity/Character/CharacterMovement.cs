@@ -15,7 +15,8 @@ namespace Character
 
         private void Awake()
         {
-            _inputService = Game.InputService; 
+            _inputService = Game.InputService;
+            _camera = Camera.main;
         }
         
         private void Update()
