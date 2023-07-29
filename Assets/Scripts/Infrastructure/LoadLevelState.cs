@@ -6,9 +6,8 @@ namespace Infrastructure
 {
     public class LoadLevelState : IPayloadState<string>
     {
-       
         private const string Initialpoint = "InitialPoint";
-       
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
@@ -42,7 +41,7 @@ namespace Infrastructure
             var camera = Camera.main;
             if (camera != null) camera.GetComponent<CameraFollow>().Follow(playerCharacter);
         }
-        
+
         public void Exit()
         {
             _loadingCurtain.Hide();
