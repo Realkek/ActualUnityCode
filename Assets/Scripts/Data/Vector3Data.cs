@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Data
 {
@@ -15,5 +16,6 @@ namespace Data
             Y = y;
             Z = z;
         }
+        
     }
 }
