@@ -1,21 +1,21 @@
-using ForCamera;
-using Infrastructure;
+using Data;
+using Infrastructure.Services;
 using Services.Input;
 using UnityEngine;
 
-namespace Character
+namespace Activity.Character
 {
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement : MonoBehaviour, ISavedProgress
     {
-        public CharacterController CharacterController;
-        public float MovementSpeed;
+        [SerializeField] private CharacterController characterController;
+        [SerializeField] private float movementSpeed;
 
         private IInputService _inputService;
         private Camera _camera;
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.GetSingle<IInputService>();
             _camera = Camera.main;
         }
         
@@ -31,8 +31,17 @@ namespace Character
                 transform.forward = movementVector; 
             }
             movementVector += Physics.gravity;
-            CharacterController.Move(movementVector * (MovementSpeed * Time.deltaTime));
+            characterController.Move(movementVector * (movementSpeed * Time.deltaTime));
         }
-        
+
+        public void LoadProgress(PlayerProgress playerProgress)
+        {
+            playerProgress.WorldData.Position = transform.position.AsVectorData();
+        }
+
+        public void UpdateProgress(PlayerProgress playerProgress)
+        {
+          
+        }
     }
 }

@@ -4,12 +4,11 @@ namespace Services.Input
 {
     public abstract class InputService : IInputService
     {
+        public abstract Vector2 Axis { get; }
         protected const string Horizontal = "Horizontal";
         protected const string Vertical = "Vertical";
         private const string Attack = "Attack";
-
-        public abstract Vector2 Axis { get; }
-
+        
         public bool IsAttackButtonClicked()
         {
             return SimpleInput.GetButtonUp(Attack);

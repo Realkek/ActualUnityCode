@@ -412,8 +412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d2fb800dc96f74cbe8beef67b5b86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterController: {fileID: 1461935099}
-  MovementSpeed: 4
+  characterController: {fileID: 1461935099}
+  movementSpeed: 3
 --- !u!114 &1461935100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4953333655e408646b3da7b1349c0d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 1694388104864216425}
-  CharacterController: {fileID: 1461935099}
+  animator: {fileID: 1694388104864216425}
+  characterController: {fileID: 1461935099}
 --- !u!1 &1694388104871626411
 GameObject:
   m_ObjectHideFlags: 0
