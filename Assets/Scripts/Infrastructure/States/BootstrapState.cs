@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Infrastructure.AssetsManagement;
+using Infrastructure.Factory;
+using Infrastructure.Services;
 using Services.Input;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.States
 {
     public class BootstrapState : IState
     {
@@ -31,6 +33,8 @@ namespace Infrastructure
         private void SetUpServices()
         {
             Game.InputService = InitializeInputService();
+            AllServices.Container.RegisterSingle<IInputService>(InitializeInputService());
+            AllServices.Container.RegisterSingle<IGameFactory>(new GameFactory(AllServices.GetSingle<IAssetsProvider>()));
         }
 
         public void Exit()

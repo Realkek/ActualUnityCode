@@ -1,8 +1,9 @@
 ﻿using Activity;
 using ForCamera;
+using Infrastructure.Factory;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.States
 {
     public class LoadLevelState : IPayloadState<string>
     {
