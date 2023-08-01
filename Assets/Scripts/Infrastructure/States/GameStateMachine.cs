@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Activity;
 using Infrastructure.Factory;
 using Infrastructure.Services;
+using PersistentProgress;
+using Services.SaveLoad;
 
 namespace Infrastructure.States
 {
@@ -16,11 +18,13 @@ namespace Infrastructure.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, services.GetSingle<IGameFactory>()),
+                [typeof(LoadLevelState)] =
+                    new LoadLevelState(this, sceneLoader, loadingCurtain, services.GetSingle<IGameFactory>()),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, services.GetSingle<IPersistentProgressService>(), services.GetSingle<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }
-        
+
         public void Enter<TState>() where TState : class, IState
         {
             var state = ChangeState<TState>();
@@ -40,6 +44,7 @@ namespace Infrastructure.States
             var state = ChangeState<TState>();
             state.Enter(payload);
         }
+
         private TState GetState<TState>() where TState : class, IExitableState =>
             _states[typeof(TState)] as TState;
     }

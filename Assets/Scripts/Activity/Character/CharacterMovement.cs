@@ -42,8 +42,15 @@ namespace Activity.Character
             if (GetCurrentLevel() == playerProgress.WorldData.PositionOnLevel.Level)
             {
                 Vector3Data savedPosition = playerProgress.WorldData.PositionOnLevel.Position;
-                transform.position = savedPosition.AsUnityVector();
+                ChangePositionWithoutCharacterController(savedPosition);
             }
+        }
+
+        private void ChangePositionWithoutCharacterController(Vector3Data savedPosition)
+        {
+            characterController.enabled = false;
+            transform.position = savedPosition.AsUnityVector();
+            characterController.enabled = true;
         }
 
         public void UpdateProgress(PlayerProgress playerProgress)
