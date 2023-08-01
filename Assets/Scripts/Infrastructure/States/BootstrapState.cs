@@ -3,6 +3,7 @@ using Infrastructure.Factory;
 using Infrastructure.Services;
 using PersistentProgress;
 using Services.Input;
+using Services.SaveLoad;
 using UnityEngine;
 
 namespace Infrastructure.States
@@ -10,7 +11,6 @@ namespace Infrastructure.States
     public class BootstrapState : IState
     {
         private const string Initial = "Initial";
-        private const string Gameplay = "Gameplay";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private AllServices _services;
@@ -25,21 +25,22 @@ namespace Infrastructure.States
 
         public void Enter()
         {
-            
-            _sceneLoader.Load(name: Initial, onLoaded: EnterLoadLevel);
+            _sceneLoader.Load(name: Initial, onLoaded: EnterLoadProgress);
         }
 
-        private void EnterLoadLevel()
+        private void EnterLoadProgress()
         {
-            _gameStateMachine.Enter<LoadLevelState, string>(Gameplay);
+            _gameStateMachine.Enter<LoadProgressState>();
         }
 
         private void SetUpServices()
         {
             _services.RegisterSingle(InitializeInputService());
             _services.RegisterSingle<IAssetsProvider>(new AssetsProvider());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.GetSingle<IAssetsProvider>()));
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService());
+            _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.GetSingle<IAssetsProvider>()));
+         
         }
 
         public void Exit()

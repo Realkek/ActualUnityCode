@@ -33,6 +33,6 @@ namespace Infrastructure.States
             _progressService.Progress = _saveLoadService.LoadProgress() ?? CreateProgress();
         }
 
-        private PlayerProgress CreateProgress() => new PlayerProgress(initialLevel: "Gameplay");
+        private PlayerProgress CreateProgress() => new(initialLevel: "Gameplay");
     }
 }

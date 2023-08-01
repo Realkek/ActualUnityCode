@@ -334,6 +334,11 @@ PrefabInstance:
       propertyPath: Curtain
       value: 
       objectReference: {fileID: 35178851}
+    - target: {fileID: 6897227752539803424, guid: 2b9fbbfd383d39e48a38ec65e3c75f1d,
+        type: 3}
+      propertyPath: curtain
+      value: 
+      objectReference: {fileID: 35178851}
     - target: {fileID: 6897227752539803425, guid: 2b9fbbfd383d39e48a38ec65e3c75f1d,
         type: 3}
       propertyPath: m_Name
